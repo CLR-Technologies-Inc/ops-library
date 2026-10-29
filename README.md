@@ -32,6 +32,10 @@ ops-library/
     └── templates-and-procedures/
 ```
 
+## Working tools
+
+Working Six Sigma and SPC tools in Excel / LibreOffice, Python, and R are in [Quality & Statistics → Tools](02-quality-and-statistics/tools/). They cover capability, sigma level, control charts, Gauge R&R, DOE, hypothesis tests, Pareto, and FMEA. All three formats are checked against each other in CI. The [Six Sigma toolkit by DMAIC phase](01-continuous-improvement/tools/six-sigma-toolkit.md) shows which tool to use in which phase.
+
 ## Other strong naming options
 
 | Name                                          | Acronym | Best application                            |
