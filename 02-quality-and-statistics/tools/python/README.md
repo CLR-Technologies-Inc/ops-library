@@ -1,6 +1,6 @@
 # opex_stats (Python)
 
-Six Sigma and SPC statistics using only the Python standard library (3.9+). See the [tools index](../README.md) for the full list.
+Six Sigma and SPC statistics using only the Python standard library (3.10+). See the [tools index](../README.md) for the full list.
 
 | Module | Main functions |
 | --- | --- |

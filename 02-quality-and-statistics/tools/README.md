@@ -22,7 +22,7 @@ Working Six Sigma and SPC tools in three formats. All three are built on the sam
 
 **Excel or LibreOffice Calc.** Open a workbook. Yellow cells are inputs and green cells are results. Each workbook ships with sample data, so paste your own data over it. Every result is a live formula, and the formulas use only functions that work in both Excel 2010+ and LibreOffice Calc. To rebuild the workbooks after editing the generator, run `python excel/build_workbooks.py` (needs `openpyxl`).
 
-**Python 3.9+.** No installs needed: the package uses only the standard library. Plots are optional and need `matplotlib`.
+**Python 3.10+.** No installs needed: the package uses only the standard library. Plots are optional and need `matplotlib`.
 
 ```python
 import sys; sys.path.insert(0, "python")

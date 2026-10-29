@@ -2,6 +2,7 @@ name: Statistical tools
 
 on:
   push:
+    branches: [main]
     paths: ["02-quality-and-statistics/tools/**", "03-design-and-engineering/tools/**", ".github/workflows/tools.yml"]
   pull_request:
     paths: ["02-quality-and-statistics/tools/**", "03-design-and-engineering/tools/**", ".github/workflows/tools.yml"]
@@ -11,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.13"]
+        python-version: ["3.10", "3.13"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

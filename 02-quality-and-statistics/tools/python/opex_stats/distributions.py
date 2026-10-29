@@ -1,7 +1,7 @@
 """Probability distributions implemented with the Python standard library only.
 
 These cover what the rest of the toolkit needs (normal, Student t, F, chi-square),
-so the tools run anywhere Python 3.9+ runs, without SciPy.
+so the tools run anywhere Python 3.10+ runs, without SciPy.
 """
 
 import math
