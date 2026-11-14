@@ -1,0 +1,60 @@
+name: Statistical tools
+
+on:
+  push:
+    branches: [main]
+    paths: ["02-quality-and-statistics/tools/**", "03-design-and-engineering/tools/**", ".github/workflows/tools.yml"]
+  pull_request:
+    paths: ["02-quality-and-statistics/tools/**", "03-design-and-engineering/tools/**", ".github/workflows/tools.yml"]
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Unit tests (standard library only)
+        working-directory: 02-quality-and-statistics/tools/python
+        run: python -m unittest discover -s tests -v
+      - name: Example report runs
+        working-directory: 02-quality-and-statistics/tools/python
+        run: python examples/run_all.py
+      - name: Reference results are up to date
+        if: matrix.python-version == '3.13'
+        working-directory: 02-quality-and-statistics/tools/python
+        run: |
+          python examples/make_reference.py
+          git diff --exit-code -- ../data/reference_results.json ../data/reference_results.csv
+
+  r:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+      - name: R tests against the Python reference results
+        working-directory: 02-quality-and-statistics/tools/r
+        run: Rscript tests/test_opex_stats.R
+      - name: Example report runs
+        working-directory: 02-quality-and-statistics/tools/r
+        run: Rscript run_all.R --plots
+
+  spreadsheets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install LibreOffice and openpyxl
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libreoffice-calc
+          pip install openpyxl==3.1.5
+      - name: Recalculate workbooks and compare with the Python results
+        working-directory: 02-quality-and-statistics/tools/excel
+        run: python check_workbooks.py

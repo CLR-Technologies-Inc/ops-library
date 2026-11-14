@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+output/
+.~lock.*
+
+# Design and build files for this library stay out of the public repo
+.claude/
+.agent/
+.agents/
+.worktrees/
+worktrees/
+*design-log*.md
